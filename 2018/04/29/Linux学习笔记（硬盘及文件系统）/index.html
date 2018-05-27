@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1. 硬盘1.1 硬盘的技术指标">
+<meta name="keywords" content="学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习笔记（硬盘及文件系统）">
+<meta property="og:url" content="http://yoursite.com/2018/04/29/Linux学习笔记（硬盘及文件系统）/index.html">
+<meta property="og:site_name" content="EnMing Hu&#39;s Bloger">
+<meta property="og:description" content="1. 硬盘1.1 硬盘的技术指标">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/photo/文件系统.png">
+<meta property="og:image" content="http://yoursite.com/photo/挂载文件.png">
+<meta property="og:updated_time" content="2018-05-03T11:21:33.981Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux学习笔记（硬盘及文件系统）">
+<meta name="twitter:description" content="1. 硬盘1.1 硬盘的技术指标">
+<meta name="twitter:image" content="http://yoursite.com/photo/文件系统.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/29/Linux学习笔记（硬盘及文件系统）/"/>
+
+
+
+
+
+  <title>Linux学习笔记（硬盘及文件系统） | EnMing Hu's Bloger</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	<a href="https://github.com/huenming0722" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">EnMing Hu's Bloger</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/29/Linux学习笔记（硬盘及文件系统）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="胡恩铭">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="EnMing Hu's Bloger">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux学习笔记（硬盘及文件系统）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T09:14:56+08:00">
+                2018-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-硬盘"><a href="#1-硬盘" class="headerlink" title="1. 硬盘"></a>1. 硬盘</h1><h2 id="1-1-硬盘的技术指标"><a href="#1-1-硬盘的技术指标" class="headerlink" title="1.1 硬盘的技术指标"></a>1.1 硬盘的技术指标</h2><a id="more"></a>
+<ul>
+<li>主轴转速：硬盘盘片在一分钟内所能完成的最大转速。</li>
+<li>分类：绿盘（监控） 蓝盘（普通电脑，I/O比绿盘好） 黑盘（游戏盘，家用 7200r/m） 红盘（企业）。</li>
+<li>平均寻道时间：指磁头从得到指令到寻找到数据所在磁道的时间，它描述硬盘读取数据的能力。</li>
+<li>数据传输率：指的是从用盘缓存向外输出数据的速度（MB/s）。</li>
+<li>高速缓存：缓存是数据的临时寄存器，主要用来缓解速度差和实现数据预存取等。</li>
+<li>单碟容量：指每张碟片的最大容量，这是反应硬盘综合性能的指标。</li>
+</ul>
+<h2 id="1-2-硬盘接口："><a href="#1-2-硬盘接口：" class="headerlink" title="1.2 硬盘接口："></a>1.2 硬盘接口：</h2><ul>
+<li>SCSI：商业级的关键数据的大容量存储。</li>
+<li>SAS：可以支持SAS和SATA磁盘。</li>
+<li>SATA：非关键数据的大容量存储。</li>
+<li>PATA：（IDE接口，很多针）。</li>
+</ul>
+<h1 id="2-静态存储"><a href="#2-静态存储" class="headerlink" title="2. 静态存储"></a>2. 静态存储</h1><h2 id="2-1-主引导记录"><a href="#2-1-主引导记录" class="headerlink" title="2.1 主引导记录"></a>2.1 主引导记录</h2><ul>
+<li>MBR位于硬盘的0磁道0柱面1扇区（512字节）<ul>
+<li>硬盘操作系统的硬盘引导程序（446字节）</li>
+<li>硬盘分区表（64B）</li>
+<li>最后两个字节“55，AA”是分区的结束标志</li>
+</ul>
+</li>
+<li>MBR是由分区程序（fdisk）产生的<ul>
+<li>不依赖于任何OS</li>
+<li>硬盘引导程序是可以改变的，从而实现多系统共存</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-磁盘分区"><a href="#2-2-磁盘分区" class="headerlink" title="2.2 磁盘分区"></a>2.2 磁盘分区</h2><ul>
+<li>指向附加分区描述符的扩展分区</li>
+<li>内核最多支持分区数：<ul>
+<li>IDE驱动器63</li>
+<li>SCSI 15</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-3-分区类型"><a href="#2-3-分区类型" class="headerlink" title="2.3 分区类型"></a>2.3 分区类型</h2><ul>
+<li>分类：主分区  扩展分区<ul>
+<li>主分区不可再分</li>
+<li>扩展分区可以再分</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-两种硬盘的存储方式"><a href="#2-4-两种硬盘的存储方式" class="headerlink" title="2.4 两种硬盘的存储方式"></a>2.4 两种硬盘的存储方式</h2><ul>
+<li>基本硬盘存储<ul>
+<li>在基本磁盘上存储数据需要在磁盘上创建主分区、扩展分区和逻辑分区，然后对这些分区进行管理。</li>
+</ul>
+</li>
+<li>动态硬盘存储<ul>
+<li>在动态磁盘上存储数据需要在磁盘上创建动态卷，然后对这些卷进行管理。</li>
+</ul>
+</li>
+<li>物理分区<ul>
+<li>PV（物理卷） </li>
+<li>多个PV —&gt; VG（卷组）</li>
+<li>随机抽取小于等于卷组的容量 —&gt; LV（逻辑卷）</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-5-分区管理工具"><a href="#2-5-分区管理工具" class="headerlink" title="2.5 分区管理工具"></a>2.5 分区管理工具</h2><pre><code>ls /dev/sda -l     #查看磁盘分区
+fdisk -l           #查看磁盘分区的详细信息 
+</code></pre><ul>
+<li>常用分区工具<ul>
+<li>fdisk</li>
+<li>sfdisk</li>
+<li>GNU parted－高级分区操作（创建、复制、调整大小等等） </li>
+</ul>
+</li>
+<li>partproba  #重新设置内存中的内核分区表版本<ul>
+<li>在虚拟机中添加磁盘后，磁盘的命名方式为sda-z</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-6-磁盘分区实验步骤"><a href="#2-6-磁盘分区实验步骤" class="headerlink" title="2.6 磁盘分区实验步骤"></a>2.6 磁盘分区实验步骤</h2><p>1.为Linux添加一块硬盘</p>
+<p>2.使用fdisk为新添加的磁盘进行分区</p>
+<pre><code>fdisk -l              #找到新添加的磁盘
+fdisk /dev/sdb1       #进入fdisk分区工具的交互模式
+p                     #查看分区信息
+d                     #删除一个分区
+n                     #新建一个分区
+    p                 #主分区,默认为主分区
+    e                 #扩展分区
+    分区号             #默认
+    分区起始位置        #没有分区时，默认为2048，已有分区时，默认为上一个分区最后的位置+1
+    +2G               #加2G （blocks/1024/1024）
+    p                 #保存之前再次查看
+    w                 #保存
+t                     #改变分区类型
+l                     #查看分区类型
+83                    #&apos;Linux&apos;格式，system类
+w                     #保存分区后退出
+q                     #不保存退出
+</code></pre><hr>
+<p>3.格式化分区</p>
+<pre><code>mkfs.xfs /dev/sdb1  #敲mkfs.后按两下tab，可以看到更多可选分区类型
+</code></pre><hr>
+<p>4.挂载分区，使用分区</p>
+<pre><code>mkdir /mnt/learn  #为分区创建挂载点
+mount /dev/sdb1 /mnt/learn  #将sdb1分区挂载到learn文件夹下 ，但要先格式化分区，关机失效
+</code></pre><hr>
+<p>5.保存分区表</p>
+<pre><code>partprobe
+</code></pre><hr>
+<h2 id="2-7-静态分区的缺点"><a href="#2-7-静态分区的缺点" class="headerlink" title="2.7 静态分区的缺点"></a>2.7 静态分区的缺点</h2><ul>
+<li>在安装Linux的过程中如何正确地评估各分区大小是一个难题，因为系统管理员不仅要考虑当前某个分区的容量，还要预见该分区以后可能需要的容量的最大    值。</li>
+<li>某个分区空间耗尽时，通常的解决方式为：<ul>
+<li>使用符号链接—-破坏了Linux文件系统的标准结构</li>
+<li>使用调整分区大小的工具—-必须停机一段时间进行调整</li>
+<li>备份整个系统、清除硬盘、重新对硬盘进行分区，然后恢复到新分区</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-8-卸载分区"><a href="#2-8-卸载分区" class="headerlink" title="2.8 卸载分区"></a>2.8 卸载分区</h2><pre><code>umount /dev/sdb1  #删除挂载  [设备名|挂载点]
+</code></pre><hr>
+<p>自动挂载</p>
+<pre><code>vim /etc/fstab
+    /dev/sdb1   /mnt/learn  xfs defaults    0   0  :wq     #使sdb1分区自动挂载到learn中，开机启动
+</code></pre><hr>
+<p>使用blkid获取块设备uuid号进入etc/fstab进行挂载</p>
+<pre><code>blkid /dev/sdb1
+</code></pre><hr>
+<h2 id="2-9-测试自动挂载"><a href="#2-9-测试自动挂载" class="headerlink" title="2.9 测试自动挂载"></a>2.9 测试自动挂载</h2><pre><code>mount -a            #查看挂载是否成功
+mount               #显示挂载详情
+</code></pre><hr>
+<h1 id="3-动态存储"><a href="#3-动态存储" class="headerlink" title="3. 动态存储"></a>3. 动态存储</h1><h2 id="3-1-LVM相关概念"><a href="#3-1-LVM相关概念" class="headerlink" title="3.1 LVM相关概念"></a>3.1 LVM相关概念</h2><ul>
+<li>LVM（逻辑盘卷管理，Logical Volume Manager）<ul>
+<li>Linux环境下对盘卷进行方便操作的抽象层。</li>
+<li>建立在硬盘和分区之上的一个逻辑层，来为文件系统屏蔽下层磁盘分区布局，从而提高磁盘分区管理的灵活性。</li>
+<li>允许在多个物理设备间重新组织文件系统，包括重新设定文件系统的大小。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-2-使用LVM优点"><a href="#3-2-使用LVM优点" class="headerlink" title="3.2 使用LVM优点"></a>3.2 使用LVM优点</h2><ul>
+<li>轻松管理磁盘分区。</li>
+<li>可以在卷组中随意创建逻辑卷，并进一步在逻辑卷上创建文件系统。</li>
+<li>可以方便的调整存储卷组的大小，并且可以对磁盘存储按照组的方式进行命名、管理和分配。</li>
+</ul>
+<h2 id="3-3-LVM结构图"><a href="#3-3-LVM结构图" class="headerlink" title="3.3 LVM结构图"></a>3.3 LVM结构图</h2><ul>
+<li>物理分区变成物理卷；</li>
+<li>物理卷任意组合成卷组；</li>
+<li>卷组划分成若干个逻辑分区；</li>
+<li>逻辑分区进行格式化，并挂载到文件中。</li>
+</ul>
+<h2 id="3-4-LVM术语–物理卷"><a href="#3-4-LVM术语–物理卷" class="headerlink" title="3.4 LVM术语–物理卷"></a>3.4 LVM术语–物理卷</h2><ul>
+<li>在LVM结构中处于最底层。</li>
+<li>可以是整个硬盘、硬盘上的分区或者从逻辑上与磁盘分区具有相同功能的设备（如RAID）。</li>
+<li>LVM的基本存储逻辑块，包含与LVM相关的管理参数。</li>
+</ul>
+<h2 id="3-5-物理区域"><a href="#3-5-物理区域" class="headerlink" title="3.5 物理区域"></a>3.5 物理区域</h2><ul>
+<li>每一个物理卷被划分为基本单元（PE）。</li>
+</ul>
+<h2 id="3-6-卷组"><a href="#3-6-卷组" class="headerlink" title="3.6 卷组"></a>3.6 卷组</h2><ul>
+<li>建立在物理卷之上，由一个或多个物理卷组成；</li>
+<li>创建后，可以动态添加物理卷组，在卷组上可以创建一个或多个“LVM分区”（逻辑卷）；</li>
+<li>一个LVM系统中可以有一个或多个卷组；</li>
+<li>类似于非LVM系统中的物理硬盘。</li>
+</ul>
+<h2 id="3-7-逻辑卷"><a href="#3-7-逻辑卷" class="headerlink" title="3.7 逻辑卷"></a>3.7 逻辑卷</h2><ul>
+<li>建立在卷组之上，是从卷组中“切出”的一块空间；</li>
+<li>创建之后，其大小可以伸缩；</li>
+<li>类似于非LVM系统中的硬盘分区，在逻辑卷之上可以建立文件系统（如/home或者/usr）。</li>
+</ul>
+<h2 id="3-8-逻辑区域"><a href="#3-8-逻辑区域" class="headerlink" title="3.8 逻辑区域"></a>3.8 逻辑区域</h2><pre><code>centOS-root   #根分区
+</code></pre><hr>
+<h2 id="3-9-交互界面"><a href="#3-9-交互界面" class="headerlink" title="3.9 交互界面"></a>3.9 交互界面</h2><ul>
+<li>lvm<ul>
+<li>pvs             #显示物理卷信息</li>
+<li>vgs             #显示卷组的信息</li>
+<li>lvs             #显示逻辑卷信息</li>
+<li>pvdisplay       #显示物理卷属性</li>
+<li>vgdisplay       #显示卷组的属性</li>
+<li>lvdisplay       #显示逻辑卷属性</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-10-创建物理卷、卷组、逻辑卷"><a href="#3-10-创建物理卷、卷组、逻辑卷" class="headerlink" title="3.10 创建物理卷、卷组、逻辑卷"></a>3.10 创建物理卷、卷组、逻辑卷</h2><p>存在两个分区/dev/sdb1 /dev/sdc1</p>
+<pre><code>pvcreate /dev/sdb3                     #将分区sdb3分区改为物理卷
+vgcreat eagle /dev/sdb3 /dev/sdc1      #用sdb3和sdc1两个物理卷创建名为eagle的卷组
+lvcreate -L 3G -n systemclass eagle    #使用eagle的卷组创建一个大小为3G的名为systemclass的逻辑卷
+</code></pre><p>注：逻辑卷应该是包含在卷组中。</p>
+<h2 id="3-11-查看卷信息"><a href="#3-11-查看卷信息" class="headerlink" title="3.11 查看卷信息"></a>3.11 查看卷信息</h2><pre><code>lvs                            #查看创建关系
+pvdisplay [&lt;物理卷设备名&gt;]       #查看物理卷信息
+vgdisplay [&lt;卷组名&gt;]            #查看卷组信息
+lvdisplay [&lt;逻辑卷卷设备名&gt;]     #查看逻辑卷信息
+</code></pre><h2 id="3-12-挂载逻辑卷"><a href="#3-12-挂载逻辑卷" class="headerlink" title="3.12 挂载逻辑卷"></a>3.12 挂载逻辑卷</h2><p>临时挂载：</p>
+<pre><code>mke2fs -t systemclass /dev/eagle/systemclass          #格式化逻辑卷
+mount /dev/eagle/systemclass /mnt                     #把卷组的一个逻辑卷systemclass挂载到/mnt目录上。
+</code></pre><hr>
+<p>开机自动挂载：</p>
+<pre><code>vim /etc/fstab
+末行添加一条挂载信息：/dev/eagle/systemclass(绝对路径或者UUID)    /mnt    ext4    default    0 0
+</code></pre><hr>
+<p>查看逻辑卷UUID：</p>
+<pre><code>blkid                    #查看UUID
+</code></pre><p>注：逻辑卷要先格式化 才能产生UUID。</p>
+<h2 id="3-13-扩展逻辑卷"><a href="#3-13-扩展逻辑卷" class="headerlink" title="3.13 扩展逻辑卷"></a>3.13 扩展逻辑卷</h2><p>1.若卷组中无剩余空间，首先扩展卷组<br><br>    1).添加硬盘，在磁盘上创建8e分区<br>    2).在分区上创建物理卷<br>    3).将物理卷添加到卷组中</p>
+<pre><code>vgextend &lt;卷组名&gt; &lt;物理卷设备名&gt; [...]
+vgextend eagle /dev/sdc2                   #动态改变大小
+vgs                                        #查看是否还有空余
+</code></pre><hr>
+<p>2.若卷组中有剩余空间，扩展卷组中的逻辑卷</p>
+<pre><code>lvextend &lt;-L +逻辑卷增量&gt; &lt;逻辑卷设备名&gt;
+lvextend &lt;-l +PE值&gt; &lt;逻辑卷设备名称&gt;
+lvextend -L 1G /dev/eagle/system_class     #扩展逻辑卷
+</code></pre><hr>
+<p>3.对已扩展的逻辑卷中的文件系统进行容量扩展</p>
+<pre><code>resize2fs &lt;分区或逻辑卷设备名&gt;
+</code></pre><hr>
+<p>4.将两个物理卷扩展到已存在的eagle卷组中 </p>
+<pre><code>vgextend eagle /dev/sdb1 /dev/sdb2
+</code></pre><hr>
+<p>5.在eagle卷组中扩展system_class逻辑卷，扩展大小为6GB   </p>
+<pre><code>lvextend -L +6G /dev/eagle/system_class
+</code></pre><hr>
+<p>6.为home文件系统（ext3）扩充容量</p>
+<pre><code>resize2fs -f /dev/eagle/system_class
+</code></pre><hr>
+<p>7.使用umount命令卸载文件系统<br><br>8.使用e2fsck命令检查文件系统<br><br>9.使用resize2fs命令缩减文件系统容量<br><br>10.缩减逻辑卷</p>
+<pre><code>lvreduce &lt;-L -逻辑卷增量&gt; &lt;逻辑卷设备名称&gt;
+lvreduce &lt;-l -PE值&gt; &lt;逻辑卷设备名称&gt;
+</code></pre><h1 id="4-文件系统"><a href="#4-文件系统" class="headerlink" title="4. 文件系统"></a>4. 文件系统</h1><h2 id="4-1-定义"><a href="#4-1-定义" class="headerlink" title="4.1 定义"></a>4.1 定义</h2><ul>
+<li>文件系统是包括在一个磁盘（硬盘、光盘及其他存储设备）上的目录结构，一个磁盘设备可以包含一个或多个文件系统。</li>
+</ul>
+<h2 id="4-2-Linux的文件系统结构"><a href="#4-2-Linux的文件系统结构" class="headerlink" title="4.2 Linux的文件系统结构"></a>4.2 Linux的文件系统结构</h2><ul>
+<li>Linux下的所有文件和目录以一个树状的结构组织构成了 Linux 中的文件系统。<ul>
+<li>Linux文件系统标准（Linux File System Standard，FSSTND） </li>
+<li>文件系统层次结构标准（File System Hierarchy Standard，FHS） </li>
+</ul>
+</li>
+</ul>
+<p><img src="/photo/文件系统.png" alt="文件系统"></p>
+<h2 id="4-3-Linux的多种文件系统"><a href="#4-3-Linux的多种文件系统" class="headerlink" title="4.3 Linux的多种文件系统"></a>4.3 Linux的多种文件系统</h2><ul>
+<li>Linux的内核采用了虚拟文件系统（Virtual File System，VFS）技术，因此Linux可以支持多种不同的文件系统类型。</li>
+<li>Linux可以支持的文件系统：<ul>
+<li>UNIX类的文件系统：HFS、XFS、JFS、Minix FS、UFS等。</li>
+<li>NFS网络文件系统。</li>
+<li>NTFS和vfat(FAT32)文件系统。</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-4-Linux的日志文件系统"><a href="#4-4-Linux的日志文件系统" class="headerlink" title="4.4 Linux的日志文件系统"></a>4.4 Linux的日志文件系统</h2><ul>
+<li>Linux支持的日志文件系统：<ul>
+<li>ext3/ext4</li>
+<li>JFS（IBM）</li>
+<li>XFS（SGI）</li>
+<li>Reiserfs</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-5-挂装文件系统–mount命令"><a href="#4-5-挂装文件系统–mount命令" class="headerlink" title="4.5 挂装文件系统–mount命令"></a>4.5 挂装文件系统–mount命令</h2><pre><code>mount  [选项]  [&lt;分区设备名&gt;]  [&lt;挂载点&gt;]      #例如：mount -t ext3 /dev/sdb1 /opt
+</code></pre><hr>
+<ul>
+<li>常用选项<ul>
+<li>-t：&lt;文件系统类型&gt;：指定文件系统类型</li>
+<li>-r：使用只读方式来挂载 </li>
+<li>-a：挂装/etc/fstab文件中记录的设备</li>
+<li>-o：iocharset=cp936：使挂装的设备可以显示中文文件名</li>
+<li>-o：loop：使用回送设备挂装ISO文件和映像文件</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-6-etc-fstab文件的格式"><a href="#4-6-etc-fstab文件的格式" class="headerlink" title="4.6 /etc/fstab文件的格式"></a>4.6 /etc/fstab文件的格式</h2><ul>
+<li>每一行说明一个文件的挂载信息</li>
+<li>第一个字段：分区或Lv</li>
+<li>第二个字段：挂载点</li>
+<li>第三个字段：文件系统类型</li>
+<li>第四个字段：挂载选项<ul>
+<li>defaults：使用rw，suid …… 挂装设备</li>
+<li>acl/noacl：</li>
+<li>async：非同步方式执行文件系统的输入输出    </li>
+</ul>
+</li>
+<li>第五个字段：备份频率</li>
+<li>第六个字段：检查顺序</li>
+</ul>
+<p><img src="/photo/挂载文件.png" alt="挂载文件"></p>
+<h1 id="5-交换空间"><a href="#5-交换空间" class="headerlink" title="5. 交换空间"></a>5. 交换空间</h1><p>1.交换分区和交换文件<br><br>  1).Linux系统使用交换分区/文件实现虚拟内存技术，它是系统RAM的补充。</p>
+<hr>
+<p>  2).进程长时间占用内存空间不活动时，将这部分内存交换到交换分区中，当进程活跃时，再将其读入到真实的物理内存中。</p>
+<pre><code>首先创建交换分区或者文件 
+mkswap /dev/                        #创建swap文件
+vim /etc/fstab                      #添加条目进行挂载
+UUID swap swap defaults 0 0 
+swapon -a                           #激活
+</code></pre><hr>
+<p>  3).生成交换文件 </p>
+<pre><code>dd if=/dev/zero of=/swapfile bs=1024 count=X
+</code></pre><h1 id="6-Ext-2-3-4文件系统管理"><a href="#6-Ext-2-3-4文件系统管理" class="headerlink" title="6. Ext 2/3/4文件系统管理"></a>6. Ext 2/3/4文件系统管理</h1><p>1.创建文件系统<br><br>  1).前端命令mkfs的格式</p>
+<pre><code>mkfs -t &lt;fstype&gt; -c  &lt;分区设备名&gt;           #例：mkfs -t ext3 -c /dev/hda2
+    -t fstype：指定文件系统类型
+    -c：建立文件系统前先检测有无坏块
+</code></pre><p>2.检查文件系统<br><br>  1).fsck是操作系统扫描文件系统内容检查内部一致性的工具。</p>
+<pre><code>fsck [选项][-t 文件系统类型] &lt;设备名&gt; [特定文件系统的附加选项]
+fsck -t ext4 /dev/sdb2            #检查文件系统，对所有问题回答“yes”
+e2fsck  -p  /dev/sda5             #自动检查并修复文件系统
+fsck.ext3  -f  -y  /dev/hda2      #强制进行文件系统检查，标识损坏区块，对所有问题回答“yes”
+</code></pre><p>3.显示和调整文件系统属性<br><br>  1).显示文件系统属性参数</p>
+<pre><code>tune2fs -l  &lt;device&gt; 
+dumpe2fs -h &lt;device&gt; 
+</code></pre><p>  2).可调整的文件系统属性参数：保留块 、默认挂载选项 、fsck频率。</p>
+<h1 id="7-磁盘限额"><a href="#7-磁盘限额" class="headerlink" title="7. 磁盘限额"></a>7. 磁盘限额</h1><p>1.硬盘限额配置步骤<br><br>  1).启用文件系统的quota功能</p>
+<pre><code>vim /etc/fstab                     #添加文件系统挂载选项usrquota,grpquota。
+LABEL=/home      /home         ext3        defaults,grpquota,usrquota       1  2
+mount -o remount /home             #重新挂装文件系统
+</code></pre><p>  2).创建quota数据库并开启quota</p>
+<pre><code>quotacheck -cmvug/home             #创建quota数据库
+quotaon -avug                      #开启quota功能
+</code></pre><p>  3).设置用户和组的quota</p>
+<pre><code>edquota                            #交互式编辑配额
+setquota                           #命令式设置配额
+edquota -p &lt;protoname&gt;             #将参考用户/组的配额复制给其他用户/组
+setquota -p &lt;protoname&gt;            #将参考用户/组的配额复制给其他用户/组
+</code></pre><p>edquota命令：</p>
+<pre><code>edquota [-u] [-f filesystem]&lt;username&gt;         #编辑指定用户的配额
+edquota -g [-f filesystem] &lt;groupname&gt;         #编辑指定组的配额
+esquota -t [-u] [-f filesystem]                #编辑指定用户的配额时限
+edquota -t -g [-f filename]                    #编辑指定组的配额时限
+-f filename 表示对指定的文件系统设置配额，省略时表示对所有启用quota的文件系统进行设置
+</code></pre><p>setquota命令：</p>
+<pre><code>setquota [-u]&lt;username&gt;&lt;块软限制 块硬限制 inode软限制 inode硬限制&gt;&lt;-a|文件系统&gt;      #为指定用户设置配额
+setquota -g &lt;groupname&gt;&lt;块软限制 块硬限制 inode软限制 inode硬限制&gt;&lt;-a|文件系统&gt;      #为指定组的设置配额
+setquota -t [-u] &lt;块时限inode时限&gt;&lt;-a|文件系统&gt;                                   #为指定用户设置配额时限
+setquota -t -g &lt;块时限inode时限&gt;&lt;-a|文件系统&gt;                                     #为指定组设置配额时限 
+</code></pre><hr>
+<p>注：<br>软限制：当到达设置值时会出现警告，但不会禁用。<br>硬限制：当到达设置值时会强制停止。<br>块：内存容量。<br>inode：文件个数。<br>若对所有启用了quota的文件系统设置配额，则使用-a；否则，若对指定的文件系统设置配额，则需要指定文件系统。</p>
+<hr>
+<p>使用参考用户或组复制配额：</p>
+<hr>
+<p>将参考用户protouname的限额设置复制给带设置用户username:</p>
+<pre><code>edquota [-u] -p &lt;protouname&gt;&lt;username&gt;&lt;-a|文件系统&gt;
+setquota [-u] -p &lt;protouname&gt;&lt;username&gt;&lt;-a|文件系统&gt;
+</code></pre><hr>
+<p>将参考组protogname的限额设置复制给待设置组groupname:</p>
+<pre><code>edquota -g -p &lt;protouname&gt;&lt;username&gt;&lt;-a|文件系统&gt;
+setquota -g -p &lt;protouname&gt;&lt;username&gt;&lt;-a|文件系统&gt;
+</code></pre><hr>
+<p>查看磁盘限额:</p>
+<hr>
+<p>查看指定用户或者组的quota设置:</p>
+<pre><code>quota [-vl] [-u &lt;username&gt;]
+quota [-vl] [-g &lt;groupname&gt;]
+quota -q
+</code></pre><hr>
+<p>显示指定文件系统的磁盘限额汇总情况:</p>
+<pre><code>repquota [-ugv] filesystem
+</code></pre><hr>
+<p>显示所有文件系统的磁盘限额汇总信息:</p>
+<pre><code>repquota [-augv]  
+</code></pre><hr>
+
+      
+    </div>
+    
+    
+    
+
+	<div>
+		
+		<div>  <div style="text-align:center;color: #ccc;font-size:14px;"><br/><br/>-------------本文结束&nbsp<i class="fa fa-paw"></i>&nbsp感谢您的阅读-------------</div>  </div>
+		
+	</div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"><i class="fa fa-tag"></i> 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/15/博时代、客论技术/" rel="next" title="博时代、客论技术">
+                <i class="fa fa-chevron-left"></i> 博时代、客论技术
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/30/Hexo+Github搭建个人技术博客/" rel="prev" title="Hexo+Github搭建个人技术博客">
+                Hexo+Github搭建个人技术博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="胡恩铭" />
+            
+              <p class="site-author-name" itemprop="name">胡恩铭</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/huenming0722" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:3383587976@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-硬盘"><span class="nav-number">1.</span> <span class="nav-text">1. 硬盘</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-硬盘的技术指标"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 硬盘的技术指标</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-硬盘接口："><span class="nav-number">1.2.</span> <span class="nav-text">1.2 硬盘接口：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-静态存储"><span class="nav-number">2.</span> <span class="nav-text">2. 静态存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-主引导记录"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 主引导记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-磁盘分区"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 磁盘分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-分区类型"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 分区类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-两种硬盘的存储方式"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 两种硬盘的存储方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-分区管理工具"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 分区管理工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-磁盘分区实验步骤"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 磁盘分区实验步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7-静态分区的缺点"><span class="nav-number">2.7.</span> <span class="nav-text">2.7 静态分区的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-卸载分区"><span class="nav-number">2.8.</span> <span class="nav-text">2.8 卸载分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-测试自动挂载"><span class="nav-number">2.9.</span> <span class="nav-text">2.9 测试自动挂载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-动态存储"><span class="nav-number">3.</span> <span class="nav-text">3. 动态存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-LVM相关概念"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 LVM相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-使用LVM优点"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 使用LVM优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-LVM结构图"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 LVM结构图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-LVM术语–物理卷"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 LVM术语–物理卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-物理区域"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 物理区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-卷组"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 卷组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-逻辑卷"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 逻辑卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-8-逻辑区域"><span class="nav-number">3.8.</span> <span class="nav-text">3.8 逻辑区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-9-交互界面"><span class="nav-number">3.9.</span> <span class="nav-text">3.9 交互界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-10-创建物理卷、卷组、逻辑卷"><span class="nav-number">3.10.</span> <span class="nav-text">3.10 创建物理卷、卷组、逻辑卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-11-查看卷信息"><span class="nav-number">3.11.</span> <span class="nav-text">3.11 查看卷信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-12-挂载逻辑卷"><span class="nav-number">3.12.</span> <span class="nav-text">3.12 挂载逻辑卷</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-13-扩展逻辑卷"><span class="nav-number">3.13.</span> <span class="nav-text">3.13 扩展逻辑卷</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-文件系统"><span class="nav-number">4.</span> <span class="nav-text">4. 文件系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-定义"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-Linux的文件系统结构"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 Linux的文件系统结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-Linux的多种文件系统"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 Linux的多种文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-Linux的日志文件系统"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 Linux的日志文件系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-挂装文件系统–mount命令"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 挂装文件系统–mount命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-etc-fstab文件的格式"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 /etc/fstab文件的格式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-交换空间"><span class="nav-number">5.</span> <span class="nav-text">5. 交换空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-Ext-2-3-4文件系统管理"><span class="nav-number">6.</span> <span class="nav-text">6. Ext 2/3/4文件系统管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-磁盘限额"><span class="nav-number">7.</span> <span class="nav-text">7. 磁盘限额</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">胡恩铭</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank">NexT</a> </div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+ 
+</body>
+</html>
