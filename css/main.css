@@ -2045,7 +2045,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #cf473c;
+  background: #d9ff11;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3288,6 +3288,7 @@ header.post-header {
 }
 body {
   background: url("/images/background.jpg");
+  background-attachment: fixed;
 }
 #days {
   display: block;
